@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Reflection;
 using System.Text;
 
 namespace Polinomials
@@ -35,7 +36,7 @@ namespace Polinomials
                     DegreeCoeff.Add(index, value);
                 }
 
-                if (DegreeCoeff[index] < eps)
+                if (Math.Abs(DegreeCoeff[index]) < eps)
                 {
                     DegreeCoeff.Remove(index);
                 }
@@ -54,7 +55,7 @@ namespace Polinomials
                 DegreeCoeff.Add(degree, coeff);
             }
 
-            if (DegreeCoeff[degree] < eps)
+            if (Math.Abs(DegreeCoeff[degree]) < eps)
             {
                 DegreeCoeff.Remove(degree);
             }
@@ -102,10 +103,14 @@ namespace Polinomials
         {
             if (obj is Poly p)
             {
-                return DegreeCoeff.SequenceEqual(p.DegreeCoeff);
+                foreach (var item in DegreeCoeff)
+                {
+                    if (!(p.ContainsKey(item.Key) && Math.Abs(item.Value - p[item.Key]) < eps))
+                        return false;
+                }
             }
 
-            return false;
+            return true;
         }
 
         public override int GetHashCode()
