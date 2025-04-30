@@ -21,7 +21,6 @@ namespace Polinomials
 
             return result;
         }
-
         public static Poly[] Div(Poly divisible, Poly divider)
         {
             var remainderOfDiv = divisible.Clone();
@@ -47,18 +46,13 @@ namespace Polinomials
         {
             return divisible.Count == 0 || divisible.MaxDegree < divider.MaxDegree;
         }
-        public static void Subtraction(Poly p1, Poly p2)
+        private static void Subtraction(Poly p1, Poly p2)
         {
-            //Poly result = p1.Clone();
             foreach (var it1 in p2)
             {
                 p1.AddOrCoeffSum(-it1.Value, it1.Key);
             }
-
-            //return result;
         }
-
-
         private static Poly GetMaxDegree(Poly divisible, Poly divider)
         {
             return new Poly([(divisible[divisible.MaxDegree] / divider[divider.MaxDegree], divisible.MaxDegree - divider.MaxDegree)]);

@@ -30,7 +30,7 @@ namespace Polinomials
             return polynomials.ToArray();
         }
 
-        static (double, int) GetCoeffAndDegree(string line)
+        private static (double, int) GetCoeffAndDegree(string line)
         {
             string[] words = line.Split(' ');
             double coeff = double.Parse(words[0]);
