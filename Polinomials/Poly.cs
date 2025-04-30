@@ -108,9 +108,9 @@ namespace Polinomials
                     if (!(p.ContainsKey(item.Key) && Math.Abs(item.Value - p[item.Key]) < eps))
                         return false;
                 }
+                return true;
             }
-
-            return true;
+            return false;
         }
 
         public override int GetHashCode()
